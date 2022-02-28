@@ -1,0 +1,91 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>_shifted</title>
+  <meta name="description" content="A game that challenges you to place four dishes correctly at a table.">
+  <meta name="author" content="Jonathan Ward">
+
+  <meta property="og:title" content="_shifted">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:description" content="A game that challenges you to place four dishes correctly at a table.">
+  <meta property="og:image" content="">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,900;1,200;1,300;1,400;1,600;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=1.0">
+</head>
+<body>
+  <div id="page">
+    <header>
+        <h1 id="logo">_shifted</h1>
+    </header>
+    <div id="cover"></div>
+    <div id="intro-message">
+      <div id="intro-container">
+          <h2 id="close">X</h2>
+          <h2 id="welcome">WELCOME!</h2>
+          <p>You work at Chuck's, an esteemed local restaurant. It's a busy Friday night, and your head waiter suddenly had to leave work while waiting a table of four guests. Your friend has asked you to cover their shift.</p>
+          <p>Your task is to determine the correct placement of the guests' dishes based on clues, as well as trial and error.</p>
+          <p>You will have eight tries.</p>
+      </div>
+    </div>
+    <!-- Start clues and guesses box -->
+    <div id="clues-and-guesses-box">
+      <div id="clues-and-guesses-headings"><span id="clues-heading">CLUES</span><span id="guesses-heading">GUESSES</span></div>
+      <div id="guest-list"></div>
+      <div id="clues"></div>
+      <div id="guess-content"></div>
+    </div>
+    <!-- Start answer table -->
+    <table id="answer-table">
+      <tr>
+        <td id="place-one" class="guess-container" colspan="3"></td>
+      </tr>
+      <tr>
+        <td id="place-four" class="guess-container"></td>
+        <td id="table-container"><img src="images/table.png" id="table-graphic"></td>
+        <td id="place-two" class="guess-container"></td>
+      </tr>
+      <tr>
+        <td id="place-three" class="guess-container" colspan="3"></td>
+      </tr>
+    </table>
+    <!-- Start dish button table -->
+    <table id="dish-button-table">
+      <tr>
+        <td id="dish-1" class="menu-button"></td>
+        <td id="dish-2" class="menu-button"></td>
+        <td id="dish-3" class="menu-button"></td>
+      </tr>
+      <tr>
+        <td id="dish-4" class="menu-button"></td>
+        <td id="dish-5" class="menu-button"></td>
+        <td id="dish-6" class="menu-button"></td>
+      </tr>
+      </table>
+      <h3 id="enter">ENTER</h3>
+      <!-- Start turn counter table -->
+      <table id="turns">
+        <tr id="turn-counter">
+          <td id="turn-1"></td>
+          <td id="turn-2"></td>
+          <td id="turn-3"></td>
+          <td id="turn-4"></td>
+          <td id="turn-5"></td>
+          <td id="turn-6"></td>
+          <td id="turn-7"></td>
+          <td id="turn-8"></td>
+        </tr>
+      </table>
+      <h3 id="play-again"><a href="index.html">PLAY AGAIN</a></h3>
+  </div>
+  
+  <script src="js/script.js"></script>
+</body>
+</html>
