@@ -163,12 +163,6 @@ function shuffle(array) {
 
 shuffle(officialClues);
 
-function printClues() {
-    for (clue of officialClues) {
-        console.log(`- ${clue}`);
-    }
-}
-
 // Check whether a word should be plural based on if a condition is true. If it is, add an "s" to the word. If not, return the word
 function checkPlurality(word, condition) {
     if (condition) {
