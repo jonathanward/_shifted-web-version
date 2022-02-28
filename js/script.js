@@ -38,8 +38,6 @@ let guestFour = new Guest(selectItem(names), selectItem(dishes), 4);
 // Create list with four guests
 let table = [guestOne, guestTwo, guestThree, guestFour];
 
-console.log(table);
-
 // Create separate alphabetized list of four guests
 let alphaTable = table.slice().sort((a, b) => a.name.localeCompare(b.name));
 
