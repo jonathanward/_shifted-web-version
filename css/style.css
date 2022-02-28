@@ -270,6 +270,11 @@ header {
     #clues-and-guesses-box {
         height: 150px;
     }
+
+    header {
+        font-size: 14px;
+        padding: 10px 0;
+    }
 }
     
 
