@@ -60,15 +60,15 @@ for (guest of table) {
         guest.leftNeighbor = table[0];
     }
     // Establish opposite person
-    if (guest.place === 0) {
+    if (guest.place === 1) {
         guest.opposite = table[2];
-      } else if (guest.place === 1) {
+    } else if (guest.place === 2) {
         guest.opposite = table[3];
-      } else if (guest.place === 2) {
+    } else if (guest.place === 3) {
         guest.opposite = table[0];
-      } else {
+    } else if (guest.place === 4) {
         guest.opposite = table[1];
-      }
+    }
     // Create array with all related people
     guest.tablemates = [guest.rightNeighbor, guest.opposite, guest.leftNeighbor];
     // Create array with all foods the guest did not order
@@ -421,7 +421,7 @@ function populatePlace(dishButton, text) {
 
 dishOne.addEventListener("click", function addButtonOne() {
     populatePlace(dishOne, dishOne.innerHTML);
-});
+});8
 dishTwo.addEventListener("click", function addButtonTwo() {
     populatePlace(dishTwo, dishTwo.innerHTML);
 });
@@ -437,3 +437,5 @@ dishFive.addEventListener("click", function addButtonFive() {
 dishSix.addEventListener("click", function addButtonSix() {
     populatePlace(dishSix, dishSix.innerHTML);
 });
+
+console.log(table);
