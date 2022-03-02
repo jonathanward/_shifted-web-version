@@ -121,6 +121,12 @@ header {
     margin-right: 2px;
 }
 
+/* End message */ 
+
+#end-message {
+    text-align: center;
+}
+
 /* Clues and guesses box */
 
 #clues-and-guesses-box {

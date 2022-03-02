@@ -180,6 +180,9 @@ const closeButton = document.getElementById("close");
 const introMessage = document.getElementById("intro-message");
 const introOverlay = document.getElementById("cover");
 
+// End message
+const endMessage = document.getElementById("end-message");
+
 // Clues and guesses box
 const cluesAndGuessesBox = document.getElementById("clues-and-guesses-box");
 const cluesHeading = document.getElementById("clues-heading");
@@ -311,6 +314,7 @@ function checkAnswer() {
         guestList.style.display = "none";
         cluesHeading.style.display = "none";
         guessesHeading.style.display = "none";
+        guessContent.style.display = "none";
     }
 
     // If the player guesses the correct order, end the game and show the score
@@ -320,7 +324,7 @@ function checkAnswer() {
         playerOne.turnsLeft -= 1;
         updateTurnCounter(answerCount);
         playerOne.score = playerOne.turnsLeft * 100 + 100;
-        guessContent.innerHTML = `<h2>WOOHOO!</h2><p>You win! You solved the problem in ${(8 - playerOne.turnsLeft)} ${checkPlurality("turn", ((8 - playerOne.turnsLeft) != 1))}.</p><br><p><span class="make-bold">Score:</span> ${playerOne.score}</p>`;
+        endMessage.innerHTML = `<h2>WOOHOO!</h2><p>You win! You solved the problem in ${(8 - playerOne.turnsLeft)} ${checkPlurality("turn", ((8 - playerOne.turnsLeft) != 1))}.</p><br><p><span class="make-bold">Score:</span> ${playerOne.score}</p>`;
         playAgain.style.display = "block";
     }
     // If the player does not guess the correct order, show them how many dishes were place in the correct score. If they're out of turns, call the gameOver function
@@ -343,9 +347,9 @@ function checkAnswer() {
         clearGameContent();
         playerOne.isPlaying = false;
         statement = `<p>${answerCount} ${checkPlurality("item", answerCount !== 1)} placed correctly.</p>`;
-        cluesAndGuessesBox.innerHTML = statement;
-        cluesAndGuessesBox.innerHTML += `<p>The correct answer was:<br>1. ${guestOne.dish} (${guestOne.name})<br>2. ${guestTwo.dish} (${guestTwo.name})<br>3. ${guestThree.dish} (${guestThree.name})<br>4. ${guestFour.dish} (${guestFour.name})</p>`;
-        cluesAndGuessesBox.innerHTML += `<h2>GAME OVER</h2>`;
+        endMessage.innerHTML = statement;
+        endMessage.innerHTML += `<p>The correct answer was:<br>1. ${guestOne.dish} (${guestOne.name})<br>2. ${guestTwo.dish} (${guestTwo.name})<br>3. ${guestThree.dish} (${guestThree.name})<br>4. ${guestFour.dish} (${guestFour.name})</p>`;
+        endMessage.innerHTML += `<h2>GAME OVER</h2>`;
         playAgain.style.display = "block";
         }
 }
