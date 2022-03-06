@@ -320,6 +320,7 @@ function checkAnswer() {
         cluesContent.style.display = "none";
         guestList.style.display = "none";
         cluesHeading.style.display = "none";
+        playAgain.innerHTML = "PLAY AGAIN";
         if (condition === "win") {
             cluesAndGuessesBox.style.display = "none";
         }
@@ -336,7 +337,6 @@ function checkAnswer() {
         updateTurnCounter(answerCount);
         playerOne.score = playerOne.turnsLeft * 100 + 100;
         endMessage.innerHTML = `<h2>WOOHOO!</h2><p>You win! You solved the problem in ${(8 - playerOne.turnsLeft)} ${checkPlurality("turn", ((8 - playerOne.turnsLeft) != 1))}.</p><p><span class="make-bold">Score:</span> ${playerOne.score}</p>`;
-        playAgain.innerHTML = "PLAY AGAIN";
     }
     // If the player does not guess the correct order, show them how many dishes were place in the correct score. If they're out of turns, call the gameOver function
     else {
@@ -359,7 +359,6 @@ function checkAnswer() {
         playerOne.isPlaying = false;
         endMessage.innerHTML = `<p class="make-bold">The correct answer was:</p><p>1. ${guestOne.dish} (${guestOne.name})<br>2. ${guestTwo.dish} (${guestTwo.name})<br>3. ${guestThree.dish} (${guestThree.name})<br>4. ${guestFour.dish} (${guestFour.name})</p>`;
         endMessage.innerHTML += `<h2>GAME OVER</h2>`;
-        playAgain.style.display = "block";
         }
 }
 
