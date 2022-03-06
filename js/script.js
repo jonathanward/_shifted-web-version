@@ -133,11 +133,21 @@ function createClueC() {
     return `${clueCPerson.name} does not like ${checkFoodPlurality(undesirableFoodOne)} or ${checkFoodPlurality(undesirableFoodTwo)}.`;
 }
 
-
 function createClueD() {
-    const undesirableFoodOne = selectItem(clueDPerson.doesNotLike);
-    const undesirableFoodTwo = selectItem(clueDPerson.doesNotLike);
-    return `One person next to ${clueDPerson.name} does not like ${checkFoodPlurality(undesirableFoodOne)} or ${checkFoodPlurality(undesirableFoodTwo)}.`;
+    if (Math.random() < 0.5) {
+        if (Math.random() < 0.5) {
+            return `${clueDPerson.name} is sitting to ${clueDPerson.rightNeighbor.name}'s left.`;
+        } else {
+            return `${clueDPerson.name} is sitting to ${clueDPerson.leftNeighbor.name}'s right.`;
+        }
+    } else {
+        const person = selectItem([clueAPerson, clueCPerson, clueDPerson]);
+        if (person.dish === "soup" || person.dish === "fish" || person.dish === "pizza" || person.dish === "pasta") {
+            return `One person ordered ${person.dish}.`
+        } else {
+            return `One person ordered a ${person.dish}.`
+        }
+    }
 }
 
 // Shuffle clues so they don't always appear in the same order
@@ -303,52 +313,51 @@ function checkAnswer() {
     showGuesses();
 
     // Create function to clear game content at the end of the game
-    function clearGameContent() {
+    function clearGameContent(condition) {
         dishButtonTable.style.display = "none";
         makeGuess.style.display = "none";
         answerTable.style.display = "none";
         cluesContent.style.display = "none";
-        cluesAndGuessesBox.style.border = "none";
-        cluesAndGuessesBox.style.overflowY = "visible";
-        cluesAndGuessesBox.style.textAlign = "center";
         guestList.style.display = "none";
         cluesHeading.style.display = "none";
-        guessesHeading.style.display = "none";
-        guessContent.style.display = "none";
+        if (condition === "win") {
+            cluesAndGuessesBox.style.display = "none";
+        }
+        if (condition === "lose") {
+            cluesAndGuessesBox.style.marginBottom = "30px";
+        }
     }
 
     // If the player guesses the correct order, end the game and show the score
     if (answerCount === 4) {
-        clearGameContent();
+        clearGameContent("win");
         playerOne.isPlaying = false;
         playerOne.turnsLeft -= 1;
         updateTurnCounter(answerCount);
         playerOne.score = playerOne.turnsLeft * 100 + 100;
-        endMessage.innerHTML = `<h2>WOOHOO!</h2><p>You win! You solved the problem in ${(8 - playerOne.turnsLeft)} ${checkPlurality("turn", ((8 - playerOne.turnsLeft) != 1))}.</p><br><p><span class="make-bold">Score:</span> ${playerOne.score}</p>`;
-        playAgain.style.display = "block";
+        endMessage.innerHTML = `<h2>WOOHOO!</h2><p>You win! You solved the problem in ${(8 - playerOne.turnsLeft)} ${checkPlurality("turn", ((8 - playerOne.turnsLeft) != 1))}.</p><p><span class="make-bold">Score:</span> ${playerOne.score}</p>`;
+        playAgain.innerHTML = "PLAY AGAIN";
     }
     // If the player does not guess the correct order, show them how many dishes were place in the correct score. If they're out of turns, call the gameOver function
     else {
         playerOne.turnsLeft -= 1
         updateTurnCounter(answerCount);
         if (playerOne.turnsLeft == 0) {
-            gameOver(answerCount);
+            gameOver();
         }
         else {
             oldStatement = guessContent.innerHTML;
-            statement = `<p><span class="make-bold">Guess ${8 - Math.abs(playerOne.turnsLeft)}:</span> ${answers[0]}, ${answers[1]}, ${answers[2]}, ${answers[3]}</p><p><em>${answerCount} ${checkPlurality("item", answerCount !== 1)} placed correctly.</em></p><br>`;
+            statement = `<p><span class="make-bold">${answerCount} correct:</span> ${answers[0]}, ${answers[1]}, ${answers[2]}, ${answers[3]}</p><p><em>Guess ${8 - Math.abs(playerOne.turnsLeft)}/8</em></p><br>`;
             guessContent.innerHTML = statement;
             guessContent.innerHTML += oldStatement;
         }
     }
 
     // End the game and print the correct answer
-    function gameOver(answerCount) {
-        clearGameContent();
+    function gameOver() {
+        clearGameContent("lose");
         playerOne.isPlaying = false;
-        statement = `<p>${answerCount} ${checkPlurality("item", answerCount !== 1)} placed correctly.</p>`;
-        endMessage.innerHTML = statement;
-        endMessage.innerHTML += `<p>The correct answer was:<br>1. ${guestOne.dish} (${guestOne.name})<br>2. ${guestTwo.dish} (${guestTwo.name})<br>3. ${guestThree.dish} (${guestThree.name})<br>4. ${guestFour.dish} (${guestFour.name})</p>`;
+        endMessage.innerHTML = `<p class="make-bold">The correct answer was:</p><p>1. ${guestOne.dish} (${guestOne.name})<br>2. ${guestTwo.dish} (${guestTwo.name})<br>3. ${guestThree.dish} (${guestThree.name})<br>4. ${guestFour.dish} (${guestFour.name})</p>`;
         endMessage.innerHTML += `<h2>GAME OVER</h2>`;
         playAgain.style.display = "block";
         }
@@ -423,9 +432,10 @@ function populatePlace(dishButton, text) {
     }
 }
 
+// Make buttons clickable
 dishOne.addEventListener("click", function addButtonOne() {
     populatePlace(dishOne, dishOne.innerHTML);
-});8
+});
 dishTwo.addEventListener("click", function addButtonTwo() {
     populatePlace(dishTwo, dishTwo.innerHTML);
 });
@@ -442,4 +452,5 @@ dishSix.addEventListener("click", function addButtonSix() {
     populatePlace(dishSix, dishSix.innerHTML);
 });
 
+// Printing answer for testing purposes. Will remove eventually
 console.log(table);

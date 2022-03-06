@@ -259,12 +259,6 @@ header {
     text-align: center;
 }
 
-/* Play again button */
-
-#play-again {
-    display: none;
-}
-
 /* Media queries */
 
 @media only screen and (max-height: 789px) {
@@ -278,8 +272,12 @@ header {
     }
 
     header {
-        font-size: 14px;
+        font-size: 12px;
         padding: 10px 0;
+    }
+
+    #guest-list p, #guess-content p, #clues p {
+        font-size: .8em;
     }
 }
     
