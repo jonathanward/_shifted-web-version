@@ -35,10 +35,10 @@ let guestTwo = new Guest(selectItem(names), selectItem(dishes), 2);
 let guestThree = new Guest(selectItem(names), selectItem(dishes), 3);
 let guestFour = new Guest(selectItem(names), selectItem(dishes), 4);
 
-// Create list with four guests
+// Create array with four guests
 let table = [guestOne, guestTwo, guestThree, guestFour];
 
-// Create separate alphabetized list of four guests
+// Create separate alphabetized array of four guests
 let alphaTable = table.slice().sort((a, b) => a.name.localeCompare(b.name));
 
 // Create menu with six dishes, including four that guests have chosen. Then alphabetize menu
@@ -156,13 +156,13 @@ let officialClues = [createClueA(), createClueB(), createClueC(), createClueD()]
 function shuffle(array) {
     let m = array.length, t, i;
   
-    // While there remain elements to shuffle…
+    // While there are elements to shuffle...
     while (m) {
   
-      // Pick a remaining element…
+      // ...pick a remaining element...
       i = Math.floor(Math.random() * m--);
   
-      // And swap it with the current element.
+      // ...and swap it with the current element.
       t = array[m];
       array[m] = array[i];
       array[i] = t;
@@ -275,7 +275,7 @@ for (i = 0; i < dishButtons.length; i++) {
     dishButtons[i].innerHTML = menu[i];
 }
 
-// Fill a new turn boxe after player complete a turn
+// Fill a new turn box after player complete a turn
 const turnBoxes = [turnOneBox, turnTwoBox, turnThreeBox, turnFourBox, turnFiveBox, turnSixBox, turnSevenBox, turnEightBox];
 function updateTurnCounter(correctPlacements) {
     let i = 7 - playerOne.turnsLeft;
@@ -338,7 +338,7 @@ function checkAnswer() {
         playerOne.score = playerOne.turnsLeft * 100 + 100;
         endMessage.innerHTML = `<h2>WOOHOO!</h2><p>You win! You solved the problem in ${(8 - playerOne.turnsLeft)} ${checkPlurality("turn", ((8 - playerOne.turnsLeft) != 1))}.</p><p><span class="make-bold">Score:</span> ${playerOne.score}</p>`;
     }
-    // If the player does not guess the correct order, show them how many dishes were place in the correct score. If they're out of turns, call the gameOver function
+    // If the player does not guess the correct order, show them how many dishes were placed in the correct spot. If they're out of turns, call the gameOver function
     else {
         playerOne.turnsLeft -= 1
         updateTurnCounter(answerCount);
@@ -451,5 +451,4 @@ dishSix.addEventListener("click", function addButtonSix() {
     populatePlace(dishSix, dishSix.innerHTML);
 });
 
-// Printing answer for testing purposes. Will remove eventually
-console.log(table);
+console.log("Good luck solving this!");
