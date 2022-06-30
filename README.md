@@ -7,7 +7,7 @@
 
 _shifted (web version) is a browser-based game that challenges the user to place four dishes at a round table based on clues, as well as trial and error. 
 
-<a href="https://github.com/jonathanward/_shifted">Click here to play!</a>
+<a href="https://jonathanward.github.io/_shifted-web-version/">Click here to play!</a>
 
 ## How does it work?
 
